@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ApiGateway/ApiGateway.csproj" Id="f108c71e-8c09-4b35-b432-fed8982ab6c8" />
+  <Project Path="ServiceProducto/ServiceProducto.csproj" />
+</Solution>
