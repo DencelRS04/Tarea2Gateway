@@ -18,6 +18,10 @@ builder.Services.AddHttpClient("Productos", c =>
 {
     c.BaseAddress = new Uri("http://localhost:5001/");
 });
+builder.Services.AddHttpClient("Clientes", c =>
+{
+    c.BaseAddress = new Uri("http://localhost:5003/");
+});
 
 var app = builder.Build();
 
@@ -32,7 +36,7 @@ app.Use(async (context, next) =>
     logger.LogInformation("[Gateway] Response {StatusCode}", context.Response.StatusCode);
 });
 
-// ✅ Agregación: /api/resumen-orden/{id}
+//  Agregación: /api/resumen-orden/{id}
 // Trae orden desde MS Órdenes + productos desde MS Productos
 app.MapGet("/api/resumen-orden/{id}", async (string id, IHttpClientFactory httpFactory) =>
 {
@@ -101,6 +105,15 @@ app.MapGet("/api/resumen-orden/{id}", async (string id, IHttpClientFactory httpF
         total = productos.Sum(x => x.Precio * x.Cantidad)
     });
 });
+
+app.MapWhen(ctx => ctx.Request.Path.StartsWithSegments("/api/productos"),
+    productoApp => { /* proxy a localhost:5001 */ });
+
+app.MapWhen(ctx => ctx.Request.Path.StartsWithSegments("/api/ordenes"),
+    ordenApp => { /* proxy a localhost:5002 */ });
+
+app.MapWhen(ctx => ctx.Request.Path.StartsWithSegments("/api/clientes"),
+    clienteApp => { /* proxy a localhost:5003 */ });
 
 app.MapReverseProxy();
 app.Run();
