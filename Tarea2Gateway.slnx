@@ -1,4 +1,6 @@
 <Solution>
   <Project Path="ApiGateway/ApiGateway.csproj" Id="f108c71e-8c09-4b35-b432-fed8982ab6c8" />
+  <Project Path="ServiceClientes/ServiceClientes.csproj" Id="91955d52-592b-436a-9fca-b794ccf9ceb2" />
+  <Project Path="ServiceOrdenes/ServiceOrdenes.csproj" Id="cf683c4a-4bec-4211-8482-7931e5877845" />
   <Project Path="ServiceProducto/ServiceProducto.csproj" />
 </Solution>
