@@ -16,13 +16,13 @@ Este repositorio contiene la implementación mínima de un sistema de microservi
 |----------|-------------|-------|
 | `ProductosService` | Catálogo/Productos (CRUD / GET/POST mínimo) | `5001` |
 | `OrdenesService` | Órdenes/Pedidos (crear/listar + consulta a productos) | `5002` |
-| `ClientesService` *(opcional)* | Clientes (registrar/listar) | `5003` |
+| `ClientesService` | Clientes (registrar/listar) | `5003` |
 | `ApiGateway` | Gateway (YARP) | `5000` |
 
 ### Routing en Gateway
 - `/api/productos/*` → ProductosService
 - `/api/ordenes/*` → OrdenesService
-- `/api/clientes/*` → ClientesService (si existe)
+- `/api/clientes/*` → ClientesService
 - Agregación: `/api/resumen-orden/{id}` → orden + productos + total
 
 ---
@@ -43,7 +43,7 @@ Asegúrate de que MongoDB esté corriendo en:
 ### Bases/colecciones recomendadas
 - `MS_Productos` → `Productos`
 - `MS_Pedidos` → `Pedidos`
-- `MS_Clientes` → `Clientes` (si aplica)
+- `MS_Clientes` → `Clientes`
 
 Puedes crearlas en Mongo Compass o por consola:
 
